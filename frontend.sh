@@ -21,3 +21,4 @@
  echo status = $?
  systemctl restart nginx &>>/tmp/frontend
  echo status = $?
+ echo done
