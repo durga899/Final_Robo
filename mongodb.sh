@@ -13,4 +13,5 @@ echo status = $?
 echo Starting mongodb
 systemctl start mongod &>> /tmp/mongodb
 echo status = $?
+echo done
 
