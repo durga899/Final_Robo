@@ -14,9 +14,29 @@ echo Enable mongodb
 systemctl enable mongod &>> /tmp/mongodb
 echo status = $?
 
-echo Starting mongodb
-systemctl start mongod &>> /tmp/mongodb
+echo restarting mongodb
+systemctl restart mongod &>> /tmp/mongodb
 echo status = $?
+
+echo Downloading mongodb schema
+curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>> /tmp/mongodb
+echo status = $?
+
+cd /tmp
+echo Unzipping mongodb
+unzip mongodb.zip &>> /tmp/mongodb
+echo status = $?
+
+cd mongodb-main
+
+echo Load catalogue service schema
+mongo < catalogue.js &>> /tmp/mongodb
+echo status = $?
+
+echo Load user schema
+mongo < users.js &>> /tmp/mongodb
+echo status = $?
+
 
 
 
