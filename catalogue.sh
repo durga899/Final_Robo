@@ -1,6 +1,6 @@
 log_file=/tmp/catalogue
 
-ID = $(id -u)
+ID=$(id -u)
 if [ $ID -ne 0 ];then
   echo You should run scfript with sudo previlige
   exit 1
