@@ -25,12 +25,15 @@ else
 fi
 
 echo Adding roboshop user
-useradd roboshop &>>${log_file}
-if [ $? == 0 ]; then
-  echo Status = Success
-else
-  echo Status = Failure
-  exit 1
+id roboshop &>>${log_file}
+if [ $? -ne 0 ]; then
+   useradd roboshop &>>${log_file}
+   if [ $? == 0 ]; then
+     echo Status = Success
+   else
+     echo Status = Failure
+     exit 1
+   fi
 fi
 
 echo Download catalogue Application code
