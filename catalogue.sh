@@ -1,5 +1,11 @@
 log_file=/tmp/catalogue
 
+ID = $(id -u)
+if [ $ID -ne 0 ];then
+  echo You should run scfript with sudo previlige
+  exit 1
+fi
+
 echo Setup Nodejs repos
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
 if [ $? == 0 ]; then
