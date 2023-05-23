@@ -24,9 +24,9 @@ else
   exit 1
 fi
 
-echo Adding roboshop user
 id roboshop &>>${log_file}
 if [ $? -ne 0 ]; then
+   echo Adding roboshop user
    useradd roboshop &>>${log_file}
    if [ $? == 0 ]; then
      echo Status = Success
@@ -46,6 +46,15 @@ else
 fi
 
 cd /home/roboshop
+
+echo Removing old content
+rm -rf catalogue &>>${log_file}
+if [ $? == 0 ]; then
+  echo Status = Success
+else
+  echo Status = Failure
+  exit 1
+fi
 
 echo Extract catalogue schema
 unzip /tmp/catalogue.zip &>>${log_file}
