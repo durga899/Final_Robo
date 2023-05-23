@@ -46,7 +46,6 @@ else
 fi
 
 cd /home/roboshop
-
 echo Removing old content
 rm -rf catalogue &>>${log_file}
 if [ $? == 0 ]; then
