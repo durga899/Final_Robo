@@ -2,7 +2,7 @@ log_file=/tmp/catalogue
 
 source common.sh
 
-Rootpermission()
+Rootpermission
 
 echo Setup Nodejs repos
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
@@ -20,32 +20,32 @@ fi
 
 echo Download catalogue Application code
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>${log_file}
-statuscheck()
+statuscheck $?
 
 cd /home/roboshop
 echo Removing old content
 rm -rf catalogue &>>${log_file}
-statuscheck()
+statuscheck $?
 
 echo Extract catalogue schema
 unzip /tmp/catalogue.zip &>>${log_file}
-statuscheck()
+statuscheck $?
 
 mv catalogue-main catalogue &>>${log_file}
 cd /home/roboshop/catalogue
 
 echo Installing dependencies
 npm install &>>${log_file}
-statuscheck()
+statuscheck $?
 
 echo setup catalogue service
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>${log_file}
-statuscheck()
+statuscheck $?
 
 systemctl daemon-reload
 systemctl enable catalogue
 
 echo Start catalogue service
 systemctl start catalogue
-statuscheck()
+statuscheck $?
 
