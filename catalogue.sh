@@ -9,13 +9,13 @@ curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
 
 echo Installing nodejs
 yum install nodejs -y &>>${log_file}
-statuscheck()
+statuscheck $?
 
 id roboshop &>>${log_file}
 if [ $? -ne 0 ]; then
    echo Adding roboshop user
    useradd roboshop &>>${log_file}
-   statuscheck()
+   statuscheck $?
 fi
 
 echo Download catalogue Application code
