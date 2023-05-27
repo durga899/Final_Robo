@@ -36,7 +36,7 @@ mv user-main user &>>${log_file}
 cd /home/roboshop/user
 
 echo Installing dependencies
-$ npm install   &>>${log_file}
+npm install   &>>${log_file}
 statuscheck $?
 
 echo Update SystemD service file
