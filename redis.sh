@@ -22,5 +22,6 @@ sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf
 statuscheck $?
 
 systemctl enable redis &>>${log_file}
-systemctl retart redis &>>${log_file}
+echo Restarting redis
+systemctl restart redis &>>${log_file}
 statuscheck $?
